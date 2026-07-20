@@ -2,10 +2,6 @@ const button = document.getElementById("googleLogin");
 
 button?.addEventListener("click",()=>{
 
-    alert(
-        "Em breve: Login com Google!"
-    );
-
 });
 
 import {
