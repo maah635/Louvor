@@ -1,49 +1,14 @@
-import {
-    auth,
-    provider,
-    signInWithPopup
-} from "./firebase.js";
+console.log("APP FUNCIONANDO");
 
 const botao = document.getElementById(
     "googleLogin"
 );
 
+console.log(botao);
+
 botao.addEventListener(
     "click",
-    async () => {
-
-        try {
-
-            const resultado =
-                await signInWithPopup(
-                    auth,
-                    provider
-                );
-
-            const usuario =
-                resultado.user;
-
-            localStorage.setItem(
-                "usuario",
-                JSON.stringify({
-                    nome: usuario.displayName,
-                    email: usuario.email,
-                    foto: usuario.photoURL
-                })
-            );
-
-            window.location.href =
-                "dashboard.html";
-
-        } catch (erro) {
-
-            console.log(erro);
-
-            alert(
-                erro.message
-            );
-
-        }
-
+    ()=>{
+        alert("FUNCIONOU!");
     }
 );
