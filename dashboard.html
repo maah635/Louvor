@@ -1,0 +1,75 @@
+<button id="logout">
+    Sair da conta
+</button>
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard</title>
+
+    <link rel="stylesheet" href="dashboard.css">
+
+</head>
+<body>
+
+    <div class="sidebar">
+
+        <h2>LouvorMatch</h2>
+
+        <a href="#">Dashboard</a>
+        <a href="musicas.html">Minhas músicas</a>
+        <a href="pesquisa.html">Pesquisar Bíblia</a>
+        <a href="favoritas.html">Favoritas</a>
+        <a href="erros.html">Erros</a>
+
+    </div>
+
+    <div class="content">
+
+        <h1>Olá, Marianna!</h1>
+
+        <div class="cards">
+
+            <div class="card">
+                <h3>Músicas</h3>
+                <p id="totalMusicas">0</p>
+            </div>
+
+            <div class="card">
+                <h3>Favoritas</h3>
+                <p id="favoritas">0</p>
+            </div>
+
+            <div class="card">
+                <h3>Erros</h3>
+                <p id="erros">0</p>
+            </div>
+
+        </div>
+
+        <button id="adicionar">
+            + Adicionar Música
+        </button>
+
+        <div class="ultimas">
+
+            <h2>Últimas adicionadas</h2>
+
+            <ul id="lista">
+                <li>Deus de Promessas</li>
+                <li>Aquieta Minh'Alma</li>
+                <li>Não Pare</li>
+            </ul>
+
+        </div>
+
+    </div>
+
+    <script src="dashboard.js"></script>
+
+</body>
+</html>
