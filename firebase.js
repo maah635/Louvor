@@ -16,6 +16,7 @@ import {
 "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 const firebaseConfig = {
+    
     apiKey: "AIzaSyClKPZ0KFLurZ4U5ua7-rte-UytB4_YEdE",
     authDomain: "louvor-b9225.firebaseapp.com",
     projectId: "louvor-b9225",
@@ -23,6 +24,7 @@ const firebaseConfig = {
     messagingSenderId: "806085327342",
     appId: "1:806085327342:web:4e774dec8f25d7a7cef6ff",
     measurementId: "G-B8RLLBZCWN"
+    
 };
 
 // Inicializa
