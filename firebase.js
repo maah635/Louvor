@@ -16,24 +16,13 @@ import {
 "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 const firebaseConfig = {
-
-    apiKey: "SUA_API_KEY",
-
-    authDomain:
-    "SEU_PROJETO.firebaseapp.com",
-
-    projectId:
-    "SEU_PROJETO",
-
-    storageBucket:
-    "SEU_PROJETO.appspot.com",
-
-    messagingSenderId:
-    "000000000",
-
-    appId:
-    "SEU_APP_ID"
-
+    apiKey: "AIzaSyClKPZ0KFLurZ4U5ua7-rte-UytB4_YEdE",
+    authDomain: "louvor-b9225.firebaseapp.com",
+    projectId: "louvor-b9225",
+    storageBucket: "louvor-b9225.firebasestorage.app",
+    messagingSenderId: "806085327342",
+    appId: "1:806085327342:web:4e774dec8f25d7a7cef6ff",
+    measurementId: "G-B8RLLBZCWN"
 };
 
 // Inicializa
