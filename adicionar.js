@@ -1,1 +1,18 @@
-alert("TESTE 123456789");
+window.onload = () => {
+
+    alert("Página carregou!");
+
+    document
+        .getElementById("salvar")
+        .addEventListener(
+            "click",
+            () => {
+
+                alert(
+                    "CLIQUE DETECTADO!"
+                );
+
+            }
+        );
+
+};
