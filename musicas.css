@@ -1,0 +1,182 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial;
+    background:#f7f4ef;
+}
+
+#menu{
+    position:fixed;
+    top:15px;
+    left:15px;
+
+    width:45px;
+    height:45px;
+
+    border:none;
+    border-radius:10px;
+
+    background:#6d4c41;
+    color:white;
+
+    cursor:pointer;
+}
+
+#menuLateral{
+
+    position:fixed;
+
+    top:0;
+    left:-260px;
+
+    width:250px;
+    height:100vh;
+
+    background:white;
+
+    padding:20px;
+
+    transition:0.3s;
+
+    box-shadow:0 0 10px
+    rgba(0,0,0,0.2);
+
+}
+
+#menuLateral.ativo{
+    left:0;
+}
+
+.topoMenu{
+
+    display:flex;
+
+    justify-content:
+    space-between;
+
+    margin-bottom:20px;
+}
+
+#menuLateral a{
+
+    display:block;
+
+    margin:15px 0;
+
+    text-decoration:none;
+
+    color:#6d4c41;
+}
+
+#logout,
+#fechar{
+
+    background:#6d4c41;
+
+    color:white;
+
+    border:none;
+
+    padding:10px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+}
+
+.container{
+
+    max-width:700px;
+
+    margin:auto;
+
+    padding:80px 20px;
+}
+
+h1{
+
+    color:#6d4c41;
+
+    margin-bottom:20px;
+}
+
+input,
+textarea{
+
+    width:100%;
+
+    padding:15px;
+
+    margin-bottom:15px;
+
+    border:1px solid #ddd;
+
+    border-radius:10px;
+}
+
+textarea{
+
+    min-height:150px;
+
+    resize:vertical;
+}
+
+#salvar{
+
+    width:100%;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#6d4c41;
+
+    color:white;
+
+    cursor:pointer;
+
+    margin-bottom:30px;
+}
+
+.card{
+
+    background:white;
+
+    padding:20px;
+
+    margin-bottom:15px;
+
+    border-radius:15px;
+
+    box-shadow:
+    0 0 10px
+    rgba(0,0,0,0.08);
+}
+
+.card h3{
+
+    color:#6d4c41;
+
+    margin-bottom:10px;
+}
+
+.card button{
+
+    margin-top:10px;
+
+    margin-right:10px;
+
+    padding:10px;
+
+    border:none;
+
+    border-radius:8px;
+
+    cursor:pointer;
+}
