@@ -5,10 +5,10 @@ JSON.parse(
     )
 );
 
-if(!usuario){
+if (!usuario) {
 
     window.location.href =
-    "index.html";
+        "index.html";
 
 }
 
@@ -26,38 +26,45 @@ JSON.parse(
     )
 ) || [];
 
-const favoritas =
+/* CONTADORES */
+
+const totalMusicas =
+musicas.length;
+
+const totalFavoritas =
 musicas.filter(
     musica =>
     musica.favorita
-);
+).length;
 
-const erros =
+const totalErros =
 musicas.filter(
     musica =>
     musica.erro
-);
+).length;
 
 document
 .getElementById(
     "totalMusicas"
 )
 .innerText =
-musicas.length;
+totalMusicas;
 
 document
 .getElementById(
     "favoritas"
 )
 .innerText =
-favoritas.length;
+totalFavoritas;
 
 document
 .getElementById(
     "erros"
 )
 .innerText =
-erros.length;
+totalErros;
+
+/* ÚLTIMAS ADICIONADAS */
 
 const lista =
 document.getElementById(
@@ -66,72 +73,40 @@ document.getElementById(
 
 lista.innerHTML = "";
 
-if(
+if (
     musicas.length === 0
-){
+) {
 
     lista.innerHTML =
-    "<li>Nenhuma música adicionada.</li>";
+    `
+    <li>
+    Nenhuma música adicionada.
+    </li>
+    `;
 
-}else{
+} else {
 
     const ultimas =
-    musicas
-    .slice(-3)
-    .reverse();
+    [...musicas]
+    .reverse()
+    .slice(0, 3);
 
     ultimas.forEach(
-        musica =>{
+        musica => {
 
-            const item =
-            document
-            .createElement(
-                "li"
-            );
-
-            item.innerText =
-            musica.nome;
-
-            lista.appendChild(
-                item
-            );
+            lista.innerHTML +=
+            `
+            <li>
+                ${musica.nome}
+            </li>
+            `;
 
         }
     );
 
 }
 
-document
-.getElementById(
-    "logout"
-)
-.addEventListener(
-    "click",
-    ()=>{
-
-        localStorage.removeItem(
-            "usuario"
-        );
-
-        window.location.href =
-        "index.html";
-
-    }
-);
-
-document
-.getElementById(
-    "adicionar"
-)
-.addEventListener(
-    "click",
-    ()=>{
-
-        window.location.href =
-        "musicas.html";
-
-    }
-);
+/* MENU */
 
 const menu =
 document.getElementById(
@@ -145,7 +120,7 @@ document.getElementById(
 
 menu.addEventListener(
     "click",
-    ()=>{
+    () => {
 
         menuLateral.classList
         .toggle(
@@ -155,6 +130,8 @@ menu.addEventListener(
     }
 );
 
+/* FECHAR MENU */
+
 const fechar =
 document.getElementById(
     "fecharMenu"
@@ -162,12 +139,48 @@ document.getElementById(
 
 fechar.addEventListener(
     "click",
-    ()=>{
+    () => {
 
         menuLateral.classList
         .remove(
             "ativo"
         );
+
+    }
+);
+
+/* SAIR DA CONTA */
+
+document
+.getElementById(
+    "logout"
+)
+.addEventListener(
+    "click",
+    () => {
+
+        localStorage.removeItem(
+            "usuario"
+        );
+
+        window.location.href =
+            "index.html";
+
+    }
+);
+
+/* ADICIONAR MÚSICA */
+
+document
+.getElementById(
+    "adicionar"
+)
+.addEventListener(
+    "click",
+    () => {
+
+        window.location.href =
+            "musicas.html";
 
     }
 );

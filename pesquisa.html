@@ -2,42 +2,59 @@
 <html lang="pt-BR">
 <head>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
 
-    <title>Pesquisar Bíblia</title>
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+>
 
-    <link rel="stylesheet" href="pesquisa.css">
+<title>Versículos</title>
+
+<link
+rel="stylesheet"
+href="pesquisa.css"
+>
 
 </head>
+
 <body>
 
-    <div class="container">
+<div class="container">
 
-        <h1>Pesquisar na Bíblia</h1>
+<h1>
+Pesquisar Versículo
+</h1>
 
-        <p>
-            Digite um versículo, capítulo, livro ou um trecho da Bíblia.
-        </p>
+<input
+type="text"
+id="versiculo"
+placeholder="Ex.: Salmos 91"
+>
 
-        <textarea
-            id="textoBiblico"
-            placeholder="Ex.: Salmos 91"
-        ></textarea>
+<button id="pesquisar">
+Pesquisar
+</button>
 
-        <button id="analisar">
-            Analisar Músicas
-        </button>
+<hr>
 
-        <div id="resultado">
+<h2>
+Resultados
+</h2>
 
-            <h2>Resultados</h2>
+<div id="resultado">
 
-            <div id="listaResultados"></div>
+<p>
+Nenhuma pesquisa realizada.
+</p>
 
-        </div>
+</div>
 
-    </div>
+</div>
 
-</body<script type="module" src="pesquisa.js"></script>
+<script
+src="pesquisa.js"
+></script>
+
+</body>
 </html>

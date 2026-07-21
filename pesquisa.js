@@ -1,180 +1,170 @@
-import {
-    verificarLogin
-} from "./auth.js";
+const musicas =
+JSON.parse(
+    localStorage.getItem(
+        "musicas"
+    )
+) || [];
 
-verificarLogin();
+const palavrasBiblicas = {
 
-    import {
-    calcularCompatibilidade
-} from "./ia.js";
+    "salmos 91":[
+        "senhor",
+        "refúgio",
+        "abrigo",
+        "proteção",
+        "livramento",
+        "asas"
+    ],
 
-import { buscarBiblia } from "./bible.js";
+    "joão 3:16":[
+        "amor",
+        "deus",
+        "filho",
+        "vida",
+        "eterna"
+    ],
 
-const botao =
-document.getElementById("analisar");
+    "salmos 23":[
+        "pastor",
+        "ovelha",
+        "vale",
+        "mesa",
+        "bondade"
+    ]
 
-botao.addEventListener(
+};
+
+document
+.getElementById(
+    "pesquisar"
+)
+.addEventListener(
     "click",
-    analisar
+    pesquisar
 );
 
-function analisar(){
+function pesquisar(){
 
     const texto =
     document
-    .getElementById("textoBiblico")
-    .value;
-
-    if(!texto){
-
-        alert(
-            "Digite um texto para pesquisar."
-        );
-
-        return;
-
-    }
-
-    buscarNaBiblia(texto);
-
-}
-
-async function buscarNaBiblia(texto){
+    .getElementById(
+        "versiculo"
+    )
+    .value
+    .toLowerCase();
 
     const resultado =
-    await buscarBiblia(texto);
+    document
+    .getElementById(
+        "resultado"
+    );
 
-    if(!resultado){
+    resultado.innerHTML = "";
 
-        alert(
-            "Referência não encontrada."
-        );
+    if(
+        !palavrasBiblicas[
+            texto
+        ]
+    ){
+
+        resultado.innerHTML =
+        `
+        <p>
+        Versículo não cadastrado.
+        </p>
+        `;
 
         return;
 
     }
 
-    console.log(
-        resultado.referencia
+    const palavras =
+    palavrasBiblicas[
+        texto
+    ];
+
+    let encontradas =
+    [];
+
+    musicas.forEach(
+        musica=>{
+
+            let pontos = 0;
+
+            palavras.forEach(
+                palavra=>{
+
+                    if(
+                        musica.letra
+                        .toLowerCase()
+                        .includes(
+                            palavra
+                        )
+                    ){
+
+                        pontos++;
+
+                    }
+
+                }
+            );
+
+            if(
+                pontos > 0
+            ){
+
+                encontradas.push({
+
+                    nome:
+                    musica.nome,
+
+                    pontos
+
+                });
+
+            }
+
+        }
     );
 
-    console.log(
-        resultado.texto
-    );
-
-    compararMusicas(
-        resultado.texto
-    );
-
-}
-
-async function compararMusicas(
-    textoBiblico
-){
-
-    const resultados = [];
-
-    const query =
-    await getDocs(
-
-        collection(
-            db,
-            "usuarios",
-            usuario.email,
-            "musicas"
-        )
-
-    );
-
-    query.forEach((doc)=>{
-
-        const musica =
-        doc.data();
-
-        const score =
-        calcularCompatibilidade(
-            textoBiblico,
-            musica.letra || ""
-        );
-
-        resultados.push({
-
-            nome:
-            musica.nome,
-
-            cantor:
-            musica.cantor,
-
-            score
-
-        });
-
-    });
-
-    resultados.sort(
+    encontradas.sort(
         (a,b)=>
-        b.score - a.score
+        b.pontos -
+        a.pontos
     );
 
-    mostrarResultados(
-        resultados
-    );
+    if(
+        encontradas.length
+        === 0
+    ){
 
-}
+        resultado.innerHTML =
+        `
+        <p>
+        Nenhuma música encontrada.
+        </p>
+        `;
 
-}
+        return;
 
-function mostrarResultados(
-    resultados
-){
+    }
 
-    const lista =
-    document.getElementById(
-        "listaResultados"
-    );
+    encontradas.forEach(
+        musica=>{
 
-    lista.innerHTML = "";
+            resultado.innerHTML +=
+            `
+            <p>
 
-    resultados.forEach(
-        (musica,posicao)=>{
+            ${musica.nome}
 
-            lista.innerHTML += `
+            (${musica.pontos}
+            pontos)
 
-            <div class="item">
-
-                <h3>
-                    ${posicao+1}.
-                    ${musica.nome}
-                </h3>
-
-                <p>
-                    ${musica.cantor}
-                </p>
-
-                <p class="porcentagem">
-                    Compatibilidade:
-                    ${musica.score}%
-                </p>
-
-            </div>
-
+            </p>
             `;
 
         }
-
     );
 
 }
-
-import {
-    db,
-    collection,
-    getDocs
-} from "./firebase.js";
-
-const usuario =
-JSON.parse(
-    localStorage.getItem(
-        "usuario"
-    )
-);
