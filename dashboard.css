@@ -176,3 +176,35 @@ li{
     margin-top:40px;
 
 }
+
+.topoMenu{
+
+    display:flex;
+
+    justify-content:
+    space-between;
+
+    align-items:
+    center;
+
+    margin-bottom:
+    30px;
+
+}
+
+#fecharMenu{
+
+    width:35px;
+
+    height:35px;
+
+    border:none;
+
+    border-radius:
+    10px;
+
+    cursor:pointer;
+
+    font-size:20px;
+
+}

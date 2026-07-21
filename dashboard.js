@@ -154,3 +154,20 @@ menu.addEventListener(
 
     }
 );
+
+const fechar =
+document.getElementById(
+    "fecharMenu"
+);
+
+fechar.addEventListener(
+    "click",
+    ()=>{
+
+        menuLateral.classList
+        .remove(
+            "ativo"
+        );
+
+    }
+);
