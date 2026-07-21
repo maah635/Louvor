@@ -1,63 +1,50 @@
-import { initializeApp } from
-"https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+// Firebase App
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 
+// Autenticação
 import {
     getAuth,
-    GoogleAuthProvider,
-    signInWithPopup
-} from
-"https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+    GoogleAuthProvider
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
+// Firestore
 import {
     getFirestore,
     collection,
     addDoc,
     getDocs,
-    deleteDoc,
-    doc
-} from
-"https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+    doc,
+    updateDoc,
+    deleteDoc
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
+// Configuração do Firebase
 const firebaseConfig = {
-
-  apiKey: "AIzaSyClKPZ0KFLurZ4U5ua7-rte-UytB4_YEdE",
-
-  authDomain: "louvor-b9225.firebaseapp.com",
-
-  projectId: "louvor-b9225",
-
-  storageBucket: "louvor-b9225.firebasestorage.app",
-
-  messagingSenderId: "806085327342",
-
-  appId: "1:806085327342:web:4e774dec8f25d7a7cef6ff",
-
-  measurementId: "G-B8RLLBZCWN"
-
+    apiKey: "AIzaSyClKPZ0KFLurZ4U5ua7-rte-UytB4_YEdE",
+    authDomain: "louvor-b9225.firebaseapp.com",
+    projectId: "louvor-b9225",
+    storageBucket: "louvor-b9225.firebasestorage.app",
+    messagingSenderId: "806085327342",
+    appId: "1:806085327342:web:c3eb5c6f18c7dbf6cef6ff",
+    measurementId: "G-1GH1BSHF8W"
 };
 
-const app =
-initializeApp(
-    firebaseConfig
-);
+// Inicializa o Firebase
+const app = initializeApp(firebaseConfig);
 
-const auth =
-getAuth(app);
+// Inicializa autenticação
+export const auth = getAuth(app);
+export const provider = new GoogleAuthProvider();
 
-const provider =
-new GoogleAuthProvider();
+// Inicializa o Firestore
+export const db = getFirestore(app);
 
-const db =
-getFirestore(app);
-
+// Exporta funções que serão usadas no projeto
 export {
-    auth,
-    provider,
-    signInWithPopup,
-    db,
     collection,
     addDoc,
     getDocs,
-    deleteDoc,
-    doc
+    doc,
+    updateDoc,
+    deleteDoc
 };
