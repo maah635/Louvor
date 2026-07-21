@@ -13,38 +13,17 @@ window.onload = ()=>{
 
         alert("1");
 
-        try{
+        await addDoc(
+            collection(
+                db,
+                "teste"
+            ),
+            {
+                nome:"Teste"
+            }
+        );
 
-            alert("2");
-
-            const resposta =
-            await addDoc(
-
-                collection(
-                    db,
-                    "teste"
-                ),
-
-                {
-                    nome:"Teste"
-                }
-
-            );
-
-            alert("3");
-
-            console.log(
-                resposta.id
-            );
-
-        }catch(e){
-
-            alert(
-                "ERRO:"
-                + e.message
-            );
-
-        }
+        alert("2");
 
     };
 

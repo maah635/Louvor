@@ -1,14 +1,17 @@
 // Firebase App
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+import { initializeApp } from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 
-// Firebase Auth
+// Firebase Authentication
 import {
     getAuth,
     GoogleAuthProvider,
-    signInWithPopup
-} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+    signInWithPopup,
+    signOut
+} from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
-// Firestore
+// Firebase Firestore
 import {
     getFirestore,
     collection,
@@ -17,29 +20,61 @@ import {
     doc,
     updateDoc,
     deleteDoc
-} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+} from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyClKPZ0KFLurZ4U5ua7-rte-UytB4_YEdE",
-    authDomain: "louvor-b9225.firebaseapp.com",
-    projectId: "louvor-b9225",
-    storageBucket: "louvor-b9225.firebasestorage.app",
-    messagingSenderId: "806085327342",
-    appId: "1:806085327342:web:c3eb5c6f18c7dbf6cef6ff",
-    measurementId: "G-1GH1BSHF8W"
+
+    apiKey:
+    "AIzaSyClKPZ0KFLurZ4U5ua7-rte-UytB4_YEdE",
+
+    authDomain:
+    "louvor-b9225.firebaseapp.com",
+
+    projectId:
+    "louvor-b9225",
+
+    storageBucket:
+    "louvor-b9225.firebasestorage.app",
+
+    messagingSenderId:
+    "806085327342",
+
+    appId:
+    "1:806085327342:web:c3eb5c6f18c7dbf6cef6ff",
+
+    measurementId:
+    "G-1GH1BSHF8W"
+
 };
 
-const app = initializeApp(firebaseConfig);
+// Inicializa o Firebase
+const app =
+initializeApp(firebaseConfig);
 
-export const auth = getAuth(app);
-export const provider = new GoogleAuthProvider();
-export const db = getFirestore(app);
+// Serviços
+const auth =
+getAuth(app);
 
+const provider =
+new GoogleAuthProvider();
+
+const db =
+getFirestore(app);
+
+// Exportações
 export {
+    auth,
+    provider,
+    db,
+
     signInWithPopup,
+    signOut,
+
     collection,
     addDoc,
     getDocs,
+
     doc,
     updateDoc,
     deleteDoc
