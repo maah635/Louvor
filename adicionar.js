@@ -1,7 +1,22 @@
-alert("adicionar.js carregado!");
+alert("1");
 
-document.getElementById("salvar").onclick = () => {
+window.onload = () => {
 
-    alert("Botão funcionando!");
+    alert("2");
+
+    const botao =
+    document.getElementById(
+        "salvar"
+    );
+
+    alert(botao);
+
+    botao.onclick = () => {
+
+        alert(
+            "Botão funcionando!"
+        );
+
+    };
 
 };
