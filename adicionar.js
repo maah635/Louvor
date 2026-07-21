@@ -1,26 +1,5 @@
-alert("1");
+import {
+    db
+} from "./firebase.js";
 
-const usuario = JSON.parse(
-    localStorage.getItem(
-        "usuario"
-    )
-);
-
-alert("2");
-
-document.getElementById(
-    "nomeUsuario"
-).innerText =
-`Olá, ${usuario.nome}!`;
-
-alert("3");
-
-document.getElementById(
-    "salvar"
-).onclick = ()=>{
-
-    alert(
-        "Botão funcionando!"
-    );
-
-};
+alert("Firebase carregou!");
