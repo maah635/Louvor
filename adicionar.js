@@ -1,3 +1,5 @@
+alert("adicionar.js carregado!");
+
 import {
     db,
     collection,
@@ -66,6 +68,13 @@ document.getElementById(
 };
 
 // SALVAR
+
+document.getElementById("salvar")
+.onclick = ()=>{
+
+    alert("Botão funcionando!");
+
+};
 
 document.getElementById(
     "salvar"

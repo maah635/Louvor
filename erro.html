@@ -1,14 +1,94 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title></title>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+    <title>Letras Pendentes</title>
+
+    <link rel="stylesheet"
+    href="dashboard.css">
+
 </head>
-
 <body>
-  
-</body>
 
+    <button id="menu">☰</button>
+
+    <div id="menuLateral">
+
+        <div class="topoMenu">
+
+            <h2>Opções</h2>
+
+            <button id="fechar">X</button>
+
+        </div>
+
+        <p id="nomeUsuario"></p>
+
+        <a href="dashboard.html">
+            Painel Principal
+        </a>
+
+        <a href="biblioteca.html">
+            Biblioteca
+        </a>
+
+        <a href="adicionar.html">
+            Adicionar Música
+        </a>
+
+        <a href="favoritas.html">
+            Favoritas
+        </a>
+
+        <a href="erro.html">
+            Letras Pendentes
+        </a>
+
+        <a href="pesquisa.html">
+            Versículos
+        </a>
+
+        <br><br>
+
+        <button id="logout">
+            Sair da conta
+        </button>
+
+    </div>
+
+    <div class="container">
+
+        <h1>
+            Letras Pendentes
+        </h1>
+
+        <p>
+            As músicas sem letra aparecerão aqui para serem completadas posteriormente.
+        </p>
+
+        <div id="listaErros">
+
+            <div class="card">
+
+                <h3>
+                    Nenhuma letra pendente.
+                </h3>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script
+    type="module"
+    src="erro.js">
+    </script>
+
+</body>
 </html>
