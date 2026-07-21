@@ -1,44 +1,54 @@
-import {
-    verificarLogin
-} from "./auth.js";
-
-verificarLogin();
-
-import {
-    db,
-    collection,
-    addDoc,
-    getDocs
-} from "./firebase.js";
-
-const usuario =
-JSON.parse(
+const usuario = JSON.parse(
     localStorage.getItem(
         "usuario"
     )
 );
 
-let musicas = [];
+if (!usuario) {
 
-const lista = document.getElementById("listaMusicas");
+    window.location.href =
+        "index.html";
+
+}
+
+let musicas = JSON.parse(
+    localStorage.getItem(
+        "musicas"
+    )
+) || [];
+
+const lista = document.getElementById(
+    "listaMusicas"
+);
 
 document
-.getElementById("salvar")
-.addEventListener("click", adicionarMusica);
+.getElementById(
+    "salvar"
+)
+.addEventListener(
+    "click",
+    adicionarMusica
+);
 
-async function adicionarMusica(){
+function adicionarMusica() {
 
     const nome =
-    document.getElementById(
-        "nome"
-    ).value;
+        document
+        .getElementById(
+            "nome"
+        )
+        .value
+        .trim();
 
     const cantor =
-    document.getElementById(
-        "cantor"
-    ).value;
+        document
+        .getElementById(
+            "cantor"
+        )
+        .value
+        .trim();
 
-    if(!nome || !cantor){
+    if (!nome || !cantor) {
 
         alert(
             "Preencha todos os campos."
@@ -48,134 +58,115 @@ async function adicionarMusica(){
 
     }
 
-    try{
+    musicas.push({
 
-        await addDoc(
-
-            collection(
-                db,
-                "usuarios",
-                usuario.email,
-                "musicas"
-            ),
-
-            {
-                nome,
-                cantor,
-                letra:"",
-                favorita:false,
-                erro:false,
-                criadoEm:
-                new Date()
-            }
-
-        );
-
-        alert(
-            "Música adicionada!"
-        );
-
-        carregarMusicas();
-
-    }catch(erro){
-
-        console.log(
-            erro
-        );
-
-        alert(
-            "Erro ao salvar."
-        );
-
-    }
-
-}
-
-function editar(index){
-
-    const novoNome =
-    prompt(
-        "Novo nome:",
-        musicas[index].nome
-    );
-
-    const novoCantor =
-    prompt(
-        "Novo cantor:",
-        musicas[index].cantor
-    );
-
-    if(novoNome){
-
-        musicas[index].nome =
-        novoNome;
-
-    }
-
-    if(novoCantor){
-
-        musicas[index].cantor =
-        novoCantor;
-
-    }
-
-    ordenar();
-    renderizar <h3>
-    
-    ${musica.nome}
-</h3>
-
-<p>
-    ${musica.cantor}
-</p>
-
-<small>
-    ID: ${musica.id}
-</small>
-
-}
-
-async function carregarMusicas(){
-
-    const query =
-    await getDocs(
-
-        collection(
-            db,
-            "usuarios",
-            usuario.email,
-            "musicas"
-        )
-
-    );
-
-    musicas = [];
-
-    query.forEach((doc)=>{
-
-        musicas.push({
-
-            id:doc.id,
-
-            ...doc.data()
-
-        });
+        nome,
+        cantor,
+        favorita: false,
+        erro: false
 
     });
 
-    ordenar();
-    renderizar <h3>
-    ${musica.nome}
-</h3>
+    localStorage.setItem(
+        "musicas",
+        JSON.stringify(
+            musicas
+        )
+    );
 
-<p>
-    ${musica.cantor}
-</p>
+    alert(
+        "Música adicionada!"
+    );
 
-<small>
-    ID: ${musica.id}
-</small>
+    document.getElementById(
+        "nome"
+    ).value = "";
+
+    document.getElementById(
+        "cantor"
+    ).value = "";
+
+    renderizar();
 
 }
 
-carregarMusicas();
+function renderizar() {
+
+    lista.innerHTML = "";
+
+    if (
+        musicas.length === 0
+    ) {
+
+        lista.innerHTML = `
+            <p>
+                Nenhuma música cadastrada.
+            </p>
+        `;
+
+        return;
+
+    }
+
+    musicas
+    .sort(
+        (a, b) =>
+        a.nome.localeCompare(
+            b.nome
+        )
+    );
+
+    musicas.forEach(
+        (
+            musica,
+            index
+        ) => {
+
+            lista.innerHTML += `
+
+            <div class="card">
+
+                <h3>
+                    ${musica.nome}
+                </h3>
+
+                <p>
+                    ${musica.cantor}
+                </p>
+
+                <button
+                onclick="
+                excluir(${index})
+                ">
+                    Excluir
+                </button>
+
+            </div>
+
+            `;
+
+        }
+    );
+
+}
+
+window.excluir =
+function (index) {
+
+    musicas.splice(
+        index,
+        1
+    );
+
+    localStorage.setItem(
+        "musicas",
+        JSON.stringify(
+            musicas
+        )
+    );
+
+    renderizar();
+
+};
+
+renderizar();

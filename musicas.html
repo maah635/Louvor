@@ -1,30 +1,33 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Minhas Músicas</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <link rel="stylesheet" href="musicas.css">
+    <title>
+        Minhas Músicas
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="musicas.css"
+    >
 
 </head>
+
 <body>
 
     <div class="container">
 
-        <h1>Minhas Músicas</h1>
-
-        <div class="topo">
-
-            <input
-                type="text"
-                id="pesquisa"
-                placeholder="Pesquisar música..."
-            >
-
-        </div>
+        <h1>
+            Minhas Músicas
+        </h1>
 
         <div class="formulario">
 
@@ -41,16 +44,33 @@
             >
 
             <button id="salvar">
+
                 Adicionar Música
+
             </button>
 
         </div>
 
-        <div id="listaMusicas"></div>
+        <hr>
+
+        <h2>
+            Histórico de músicas
+        </h2>
+
+        <div id="listaMusicas">
+
+            <p>
+                Nenhuma música cadastrada.
+            </p>
+
+        </div>
 
     </div>
 
-    <script src="musicas.js"></script>
+    <script
+        src="musicas.js"
+    ></script>
 
 </body>
+
 </html>
