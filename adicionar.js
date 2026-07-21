@@ -1,22 +1,27 @@
-const usuario =
-JSON.parse(
+import {
+    db,
+    collection,
+    addDoc
+} from "./firebase.js";
+
+const usuario = JSON.parse(
     localStorage.getItem(
         "usuario"
     )
 );
 
-if(!usuario){
+if (!usuario) {
 
     window.location.href =
     "index.html";
 
 }
 
-document
-.getElementById(
+// NOME
+
+document.getElementById(
     "nomeUsuario"
-)
-.innerText =
+).innerText =
 `Olá, ${usuario.nome}!`;
 
 // MENU
@@ -31,29 +36,27 @@ document.getElementById(
     "menuLateral"
 );
 
-menu.onclick = ()=>{
+menu.onclick = () => {
 
-    menuLateral.classList
-    .add("ativo");
+    menuLateral.classList.add(
+        "ativo"
+    );
 
 };
 
-document
-.getElementById(
+document.getElementById(
     "fechar"
-)
-.onclick = ()=>{
+).onclick = () => {
 
-    menuLateral.classList
-    .remove("ativo");
+    menuLateral.classList.remove(
+        "ativo"
+    );
 
 };
 
-document
-.getElementById(
+document.getElementById(
     "logout"
-)
-.onclick = ()=>{
+).onclick = () => {
 
     localStorage.clear();
 
@@ -62,16 +65,103 @@ document
 
 };
 
-// BOTÃO SALVAR
+// SALVAR
 
-document
-.getElementById(
+document.getElementById(
     "salvar"
-)
-.onclick = ()=>{
+).onclick =
+async () => {
 
-    alert(
-        "Em breve será salvo no Firebase!"
-    );
+    const nome =
+    document
+    .getElementById(
+        "nome"
+    )
+    .value;
+
+    const cantor =
+    document
+    .getElementById(
+        "cantor"
+    )
+    .value;
+
+    const letra =
+    document
+    .getElementById(
+        "letra"
+    )
+    .value;
+
+    if (!nome || !cantor) {
+
+        alert(
+            "Preencha o nome e o cantor."
+        );
+
+        return;
+
+    }
+
+    try {
+
+        await addDoc(
+
+            collection(
+                db,
+                "usuarios",
+                usuario.email,
+                "musicas"
+            ),
+
+            {
+
+                nome,
+                cantor,
+                letra,
+
+                favorita:
+                false,
+
+                erro:
+                letra === ""
+
+            }
+
+        );
+
+        alert(
+            "Música salva com sucesso!"
+        );
+
+        document
+        .getElementById(
+            "nome"
+        )
+        .value = "";
+
+        document
+        .getElementById(
+            "cantor"
+        )
+        .value = "";
+
+        document
+        .getElementById(
+            "letra"
+        )
+        .value = "";
+
+    } catch (erro) {
+
+        console.log(
+            erro
+        );
+
+        alert(
+            "Erro ao salvar no Firebase."
+        );
+
+    }
 
 };
