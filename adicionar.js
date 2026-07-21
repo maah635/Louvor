@@ -13,17 +13,30 @@ window.onload = ()=>{
 
         alert("1");
 
-        await addDoc(
-            collection(
-                db,
-                "teste"
-            ),
-            {
-                nome:"Teste"
-            }
-        );
+        try{
 
-        alert("2");
+            await addDoc(
+                collection(
+                    db,
+                    "teste"
+                ),
+                {
+                    nome:"Teste"
+                }
+            );
+
+            alert("2");
+
+        }catch(e){
+
+            alert(
+                "ERRO:\n\n" +
+                e.message
+            );
+
+            console.log(e);
+
+        }
 
     };
 
