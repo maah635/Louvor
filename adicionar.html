@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+    name="viewport"
+    content="
+    width=device-width,
+    initial-scale=1.0">
+
+    <title>
+        Adicionar Música
+    </title>
+
+    <link
+    rel="stylesheet"
+    href="dashboard.css">
+
+</head>
+
+<body>
+
+    <button id="menu">☰</button>
+
+    <div id="menuLateral">
+
+        <div class="topoMenu">
+
+            <h2>Opções</h2>
+
+            <button id="fechar">X</button>
+
+        </div>
+
+        <p id="nomeUsuario"></p>
+
+        <a href="dashboard.html">
+            Painel Principal
+        </a>
+
+        <a href="biblioteca.html">
+            Biblioteca
+        </a>
+
+        <a href="adicionar.html">
+            Adicionar Música
+        </a>
+
+        <a href="favoritas.html">
+            Favoritas
+        </a>
+
+        <a href="erro.html">
+            Letras Pendentes
+        </a>
+
+        <a href="pesquisa.html">
+            Versículos
+        </a>
+
+        <br><br>
+
+        <button id="logout">
+            Sair da conta
+        </button>
+
+    </div>
+
+    <div class="container">
+
+        <h1>
+            Adicionar Música
+        </h1>
+
+        <input
+            type="text"
+            id="nome"
+            placeholder="Nome da música"
+        >
+
+        <br><br>
+
+        <input
+            type="text"
+            id="cantor"
+            placeholder="Nome do cantor"
+        >
+
+        <br><br>
+
+        <textarea
+            id="letra"
+            placeholder="
+Cole a letra aqui.
+Se deixar em branco,
+ela irá para Letras Pendentes.
+"
+        ></textarea>
+
+        <br><br>
+
+        <button id="salvar">
+            Salvar Música
+        </button>
+
+    </div>
+
+    <script
+    type="module"
+    src="adicionar.js">
+    </script>
+
+</body>
+</html>

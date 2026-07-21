@@ -1,71 +1,92 @@
-const usuario =
-JSON.parse(
-    localStorage.getItem(
-        "usuario"
-    )
+const usuario = JSON.parse(
+    localStorage.getItem("usuario")
 );
 
-document
-.getElementById(
+if (!usuario) {
+    window.location.href = "index.html";
+}
+
+// Nome do usuário
+document.getElementById(
     "nomeUsuario"
-)
-.innerText =
+).innerText =
 `Olá, ${usuario.nome}!`;
 
-document
-.getElementById(
-    "menu"
-)
-.onclick = ()=>{
+// ABRIR MENU
 
-    document
-    .getElementById(
-        "menuLateral"
-    )
-    .classList
-    .add(
-        "ativo"
-    );
+const menu =
+document.getElementById("menu");
 
-};
+const menuLateral =
+document.getElementById("menuLateral");
 
-document
-.getElementById(
+menu.addEventListener(
+    "click",
+    ()=>{
+
+        menuLateral.classList.add(
+            "ativo"
+        );
+
+    }
+);
+
+// FECHAR MENU
+
+document.getElementById(
     "fechar"
-)
-.onclick = ()=>{
+).addEventListener(
+    "click",
+    ()=>{
 
-    document
-    .getElementById(
-        "menuLateral"
-    )
-    .classList
-    .remove(
-        "ativo"
-    );
+        menuLateral.classList.remove(
+            "ativo"
+        );
 
-};
+    }
+);
 
-document
-.getElementById(
+// SAIR DA CONTA
+
+document.getElementById(
     "logout"
-)
-.onclick = ()=>{
+).addEventListener(
+    "click",
+    ()=>{
 
-    localStorage.clear();
+        localStorage.clear();
 
-    window.location.href =
-    "index.html";
+        window.location.href =
+        "index.html";
 
-};
+    }
+);
 
-document
-.getElementById(
+// BOTÃO ADICIONAR
+
+document.getElementById(
     "adicionar"
-)
-.onclick = ()=>{
+).addEventListener(
+    "click",
+    ()=>{
 
-    window.location.href =
-    "musicas.html";
+        window.location.href =
+        "adicionar.html";
 
-};
+    }
+);
+
+// DADOS TEMPORÁRIOS
+// Depois vamos trocar pelo Firebase
+
+document.getElementById(
+    "totalMusicas"
+).innerText = "0";
+
+document.getElementById(
+    "totalFavoritas"
+).innerText = "0";
+
+document.getElementById(
+    "totalErros"
+).innerText = "0";
