@@ -1,14 +1,112 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title></title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+    <title>Painel Principal</title>
+
+    <link rel="stylesheet"
+    href="dashboard.css">
+
 </head>
 
 <body>
-  
-</body>
 
+    <button id="menu">
+        ☰
+    </button>
+
+    <div id="menuLateral">
+
+        <div class="topoMenu">
+
+            <h2>Opções</h2>
+
+            <button id="fechar">
+                X
+            </button>
+
+        </div>
+
+        <p id="nomeUsuario">
+            Olá!
+        </p>
+
+        <a href="dashboard.html">
+            Painel Principal
+        </a>
+
+        <a href="musicas.html">
+            Biblioteca
+        </a>
+
+        <a href="pesquisa.html">
+            Versículos
+        </a>
+
+        <a href="favoritas.html">
+            Favoritas
+        </a>
+
+        <a href="erro.html">
+            Letras Pendentes
+        </a>
+
+        <br>
+        <br>
+
+        <button id="logout">
+            Sair da conta
+        </button>
+
+    </div>
+
+    <div class="container">
+
+        <h1>
+            Painel Principal
+        </h1>
+
+        <div class="card">
+            <h3>Músicas</h3>
+            <p id="totalMusicas">0</p>
+        </div>
+
+        <div class="card">
+            <h3>Favoritas</h3>
+            <p id="totalFavoritas">0</p>
+        </div>
+
+        <div class="card">
+            <h3>Letras Pendentes</h3>
+            <p id="totalErros">0</p>
+        </div>
+
+        <button id="adicionar">
+            + Adicionar Música
+        </button>
+
+        <h2>
+            Últimas adicionadas
+        </h2>
+
+        <ul id="ultimas">
+
+            <li>
+                Nenhuma música adicionada.
+            </li>
+
+        </ul>
+
+    </div>
+
+    <script
+    type="module"
+    src="dashboard.js">
+    </script>
+
+</body>
 </html>
