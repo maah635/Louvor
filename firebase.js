@@ -1,65 +1,63 @@
-// Importações do Firebase
 import { initializeApp } from
-"https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+"https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
 
 import {
     getAuth,
     GoogleAuthProvider,
-    signInWithPopup,
-    signOut
+    signInWithPopup
 } from
-"https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+"https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 
 import {
-    getFirestore
+    getFirestore,
+    collection,
+    addDoc,
+    getDocs,
+    deleteDoc,
+    doc
 } from
-"https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+"https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
 const firebaseConfig = {
-    
-    apiKey: "AIzaSyClKPZ0KFLurZ4U5ua7-rte-UytB4_YEdE",
-    authDomain: "louvor-b9225.firebaseapp.com",
-    projectId: "louvor-b9225",
-    storageBucket: "louvor-b9225.firebasestorage.app",
-    messagingSenderId: "806085327342",
-    appId: "1:806085327342:web:4e774dec8f25d7a7cef6ff",
-    measurementId: "G-B8RLLBZCWN"
-    
+
+  apiKey: "AIzaSyClKPZ0KFLurZ4U5ua7-rte-UytB4_YEdE",
+
+  authDomain: "louvor-b9225.firebaseapp.com",
+
+  projectId: "louvor-b9225",
+
+  storageBucket: "louvor-b9225.firebasestorage.app",
+
+  messagingSenderId: "806085327342",
+
+  appId: "1:806085327342:web:4e774dec8f25d7a7cef6ff",
+
+  measurementId: "G-B8RLLBZCWN"
+
 };
 
-// Inicializa
 const app =
-initializeApp(firebaseConfig);
+initializeApp(
+    firebaseConfig
+);
 
-export const auth =
+const auth =
 getAuth(app);
 
-export const db =
-getFirestore(app);
-
-export const provider =
+const provider =
 new GoogleAuthProvider();
 
+const db =
+getFirestore(app);
+
 export {
+    auth,
+    provider,
     signInWithPopup,
-    signOut
-};
-
-import {
+    db,
     collection,
     addDoc,
     getDocs,
     deleteDoc,
-    doc,
-    updateDoc
-} from
-"https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
-
-export {
-    collection,
-    addDoc,
-    getDocs,
-    deleteDoc,
-    doc,
-    updateDoc
+    doc
 };

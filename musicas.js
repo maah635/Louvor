@@ -1,89 +1,110 @@
-const usuario = JSON.parse(
-    localStorage.getItem("usuario")
+import {
+    db,
+    collection,
+    addDoc,
+    getDocs,
+    deleteDoc,
+    doc
+} from "./firebase.js";
+
+const usuario =
+JSON.parse(
+    localStorage.getItem(
+        "usuario"
+    )
 );
 
 if (!usuario) {
-    window.location.href = "index.html";
+
+    window.location.href =
+    "index.html";
+
 }
 
-let musicas = JSON.parse(
-    localStorage.getItem("musicas")
-) || [];
+let musicas = [];
 
 const lista =
-    document.getElementById(
-        "listaMusicas"
-    );
+document.getElementById(
+    "listaMusicas"
+);
 
-const botaoSalvar =
-    document.getElementById(
-        "salvar"
-    );
-
-botaoSalvar.addEventListener(
+document
+.getElementById(
+    "salvar"
+)
+.addEventListener(
     "click",
     adicionarMusica
 );
 
-function adicionarMusica() {
+async function adicionarMusica(){
 
     const nome =
-        document
-        .getElementById("nome")
-        .value
-        .trim();
+    document
+    .getElementById(
+        "nome"
+    )
+    .value
+    .trim();
 
     const cantor =
-        document
-        .getElementById("cantor")
-        .value
-        .trim();
+    document
+    .getElementById(
+        "cantor"
+    )
+    .value
+    .trim();
 
     const letra =
-        document
-        .getElementById("letra")
-        .value
-        .trim();
+    document
+    .getElementById(
+        "letra"
+    )
+    .value
+    .trim();
 
-    if (
+    if(
         !nome ||
         !cantor
-    ) {
+    ){
 
         alert(
-            "Preencha o nome da música e o cantor."
+            "Preencha todos os campos."
         );
 
         return;
+
     }
 
-    musicas.push({
+    await addDoc(
 
-        nome,
-        cantor,
-        letra,
+        collection(
+            db,
+            "usuarios",
+            usuario.email,
+            "musicas"
+        ),
 
-        favorita: false,
+        {
 
-        erro:
-            letra === ""
-                ? true
-                : false,
+            nome,
+            cantor,
+            letra,
 
-        criadoEm:
+            favorita:false,
+
+            erro:
+            letra === "",
+
+            criadoEm:
             new Date()
 
-    });
+        }
 
-    localStorage.setItem(
-        "musicas",
-        JSON.stringify(
-            musicas
-        )
     );
 
     alert(
-        "Música adicionada com sucesso!"
+        "Música adicionada!"
     );
 
     document.getElementById(
@@ -98,38 +119,74 @@ function adicionarMusica() {
         "letra"
     ).value = "";
 
-    renderizar();
+    carregarMusicas();
+
 }
 
-function renderizar() {
+async function carregarMusicas(){
+
+    musicas = [];
+
+    const query =
+    await getDocs(
+
+        collection(
+            db,
+            "usuarios",
+            usuario.email,
+            "musicas"
+        )
+
+    );
+
+    query.forEach(
+        (item)=>{
+
+            musicas.push({
+
+                id:item.id,
+
+                ...item.data()
+
+            });
+
+        }
+    );
+
+    renderizar();
+
+}
+
+function renderizar(){
 
     lista.innerHTML = "";
 
-    if (
+    if(
         musicas.length === 0
-    ) {
+    ){
 
         lista.innerHTML = `
-            <p>
-                Nenhuma música cadastrada.
-            </p>
+        <p>
+        Nenhuma música cadastrada.
+        </p>
         `;
 
         return;
+
     }
 
     musicas.sort(
-        (a, b) =>
-            a.nome.localeCompare(
-                b.nome
-            )
+        (a,b)=>
+        a.nome.localeCompare(
+            b.nome
+        )
     );
 
     musicas.forEach(
         (
             musica,
             index
-        ) => {
+        )=>{
 
             lista.innerHTML += `
 
@@ -146,41 +203,23 @@ function renderizar() {
                 <p>
                     ${
                         musica.favorita
-                            ? "⭐ Favorita"
-                            : ""
+                        ? "⭐ Favorita"
+                        : ""
                     }
                 </p>
 
                 <p>
                     ${
                         musica.erro
-                            ? "⚠ Letra pendente"
-                            : ""
+                        ? "⚠ Letra pendente"
+                        : ""
                     }
                 </p>
 
                 <button
                 onclick="
-                favoritar(
-                    ${index}
-                )
-                ">
-                    Favoritar
-                </button>
-
-                <button
-                onclick="
-                editar(
-                    ${index}
-                )
-                ">
-                    Editar
-                </button>
-
-                <button
-                onclick="
                 excluir(
-                    ${index}
+                    '${musica.id}'
                 )
                 ">
                     Excluir
@@ -191,113 +230,29 @@ function renderizar() {
             <hr>
 
             `;
+
         }
     );
+
 }
-
-window.favoritar =
-function (index) {
-
-    musicas[index]
-    .favorita =
-    !musicas[index]
-    .favorita;
-
-    salvar();
-
-};
-
-window.editar =
-function (index) {
-
-    const novoNome =
-        prompt(
-            "Novo nome:",
-            musicas[index]
-            .nome
-        );
-
-    const novoCantor =
-        prompt(
-            "Novo cantor:",
-            musicas[index]
-            .cantor
-        );
-
-    const novaLetra =
-        prompt(
-            "Nova letra:",
-            musicas[index]
-            .letra
-        );
-
-    if (
-        novoNome
-    ) {
-
-        musicas[index]
-        .nome =
-        novoNome;
-
-    }
-
-    if (
-        novoCantor
-    ) {
-
-        musicas[index]
-        .cantor =
-        novoCantor;
-
-    }
-
-    if (
-        novaLetra !==
-        null
-    ) {
-
-        musicas[index]
-        .letra =
-        novaLetra;
-
-        musicas[index]
-        .erro =
-        novaLetra === "";
-
-    }
-
-    salvar();
-
-};
 
 window.excluir =
-function (index) {
+async function(id){
 
-    if (
-        confirm(
-            "Deseja excluir esta música?"
+    await deleteDoc(
+
+        doc(
+            db,
+            "usuarios",
+            usuario.email,
+            "musicas",
+            id
         )
-    ) {
 
-        musicas.splice(
-            index,
-            1
-        );
-
-        salvar();
-    }
-};
-
-function salvar() {
-
-    localStorage.setItem(
-        "musicas",
-        JSON.stringify(
-            musicas
-        )
     );
 
-    renderizar();
-}
+    carregarMusicas();
 
-renderizar();
+};
+
+carregarMusicas();
