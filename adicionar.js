@@ -1,22 +1,26 @@
 alert("1");
 
-window.onload = () => {
+const usuario = JSON.parse(
+    localStorage.getItem(
+        "usuario"
+    )
+);
 
-    alert("2");
+alert("2");
 
-    const botao =
-    document.getElementById(
-        "salvar"
+document.getElementById(
+    "nomeUsuario"
+).innerText =
+`Olá, ${usuario.nome}!`;
+
+alert("3");
+
+document.getElementById(
+    "salvar"
+).onclick = ()=>{
+
+    alert(
+        "Botão funcionando!"
     );
-
-    alert(botao);
-
-    botao.onclick = () => {
-
-        alert(
-            "Botão funcionando!"
-        );
-
-    };
 
 };
