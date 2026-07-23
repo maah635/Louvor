@@ -1,3 +1,9 @@
+import { db } from "./firebase.js";
+
+alert("1");
+alert(db);
+alert("2");
+
 import {
     db,
     collection,
