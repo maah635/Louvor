@@ -1,6 +1,6 @@
 // Firebase App
 import { initializeApp } from
-"https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+"https://www.gstatic.com/firebasejs/1/10.12.2/firebase-app.js";
 
 // Firebase Authentication
 import {
@@ -9,7 +9,7 @@ import {
     signInWithPopup,
     signOut
 } from
-"https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 // Firebase Firestore
 import {
@@ -21,7 +21,7 @@ import {
     updateDoc,
     deleteDoc
 } from
-"https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+"https://www.gstatic.com/firebasejs/1/10.12.2/firebase-firestore.js";
 
 const firebaseConfig = {
 

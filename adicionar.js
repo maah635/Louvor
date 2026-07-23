@@ -4,40 +4,25 @@ import {
     addDoc
 } from "./firebase.js";
 
-window.onload = ()=>{
+document.getElementById("salvar")
+.onclick = async () => {
 
-    document
-    .getElementById("salvar")
-    .onclick =
-    async ()=>{
+    alert("1");
 
-        alert("1");
+    try {
 
-        try{
+        await addDoc(
+            collection(db, "teste"),
+            {
+                nome: "Teste pelo App"
+            }
+        );
 
-            await addDoc(
-                collection(
-                    db,
-                    "teste"
-                ),
-                {
-                    nome:"Teste"
-                }
-            );
+        alert("2");
 
-            alert("2");
+    } catch (e) {
 
-        }catch(e){
+        alert(e.message);
 
-            alert(
-                "ERRO:\n\n" +
-                e.message
-            );
-
-            console.log(e);
-
-        }
-
-    };
-
+    }
 };
