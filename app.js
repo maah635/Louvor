@@ -30,7 +30,7 @@ botao.addEventListener("click", async () => {
 
   } catch (erro) {
 
-    console.log("ERRO COMPLETO:");
+    console.log("ERRO complet:");
     console.log(erro);
 
     alert(
