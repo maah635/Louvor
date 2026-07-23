@@ -1,72 +1,42 @@
 // adicionar.js
 import {
-    db,
-    collection,
-    addDoc
+  db,
+  collection,
+  addDoc
 } from "./firebase.js";
 
-window.onload = () => {
+const botao = document.getElementById("salvar");
 
-    const botao =
-    document.getElementById("salvar");
+botao.addEventListener("click", async () => {
 
-    botao.addEventListener(
-        "click",
-        async () => {
+    alert("1");
 
-            const nome =
-            document.getElementById("nome").value;
+    const nome = document.getElementById("nome").value;
+    const cantor = document.getElementById("cantor").value;
+    const letra = document.getElementById("letra").value;
 
-            const cantor =
-            document.getElementById("cantor").value;
+    if (!nome || !cantor) {
+        alert("Preencha os campos");
+        return;
+    }
 
-            const letra =
-            document.getElementById("letra").value;
+    try {
 
-            if (!nome || !cantor) {
+        alert("2");
 
-                alert(
-                    "Preencha o nome da música e o cantor."
-                );
+        await addDoc(collection(db, "musicas"), {
+            nome,
+            cantor,
+            letra
+        });
 
-                return;
-            }
+        alert("3 - SALVOU!");
 
-            try {
+    } catch (erro) {
 
-                await addDoc(
-                    collection(
-                        db,
-                        "musicas"
-                    ),
-                    {
-                        nome,
-                        cantor,
-                        letra,
-                        criadaEm: new Date()
-                    }
-                );
+        alert("ERRO:");
+        alert(erro.message);
 
-                alert(
-                    "Música salva com sucesso!"
-                );
+    }
 
-                document.getElementById("nome").value = "";
-                document.getElementById("cantor").value = "";
-                document.getElementById("letra").value = "";
-
-            } catch (erro) {
-
-                console.log(erro);
-
-                alert(
-                    "Erro ao salvar:\n\n" +
-                    erro.message
-                );
-
-            }
-
-        }
-    );
-
-};
+});
