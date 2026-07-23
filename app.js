@@ -1,61 +1,45 @@
 import {
-    auth,
-    provider,
-    signInWithPopup
+  auth,
+  provider,
+  signInWithPopup
 } from "./firebase.js";
 
-const botao =
-document.getElementById(
-    "googleLogin"
-);
+const botao = document.getElementById("googleLogin");
 
-botao.addEventListener(
-    "click",
-    async ()=>{
+botao.addEventListener("click", async () => {
 
-        try{
+  try {
 
-            const resultado =
-            await signInWithPopup(
-                auth,
-                provider
-            );
+    const resultado = await signInWithPopup(
+      auth,
+      provider
+    );
 
-            const usuario =
-            resultado.user;
+    const usuario = resultado.user;
 
-            localStorage.setItem(
-                "usuario",
+    localStorage.setItem(
+      "usuario",
+      JSON.stringify({
+        nome: usuario.displayName,
+        email: usuario.email,
+        foto: usuario.photoURL
+      })
+    );
 
-                JSON.stringify({
+    window.location.href = "dashboard.html";
 
-                    nome:
-                    usuario.displayName,
+  } catch (erro) {
 
-                    email:
-                    usuario.email,
+    console.log("ERRO COMPLETO:");
+    console.log(erro);
 
-                    foto:
-                    usuario.photoURL
+    alert(
+      "Código:\n" +
+      erro.code +
+      "\n\nMensagem:\n" +
+      erro.message
+    );
 
-                })
+  }
 
-            );
-
-            window.location.href =
-            "dashboard.html";
-
-        }catch(erro){
-
-            console.log(
-                erro
-            );
-
-            alert(
-                "Erro ao entrar."
-            );
-
-        }
-
-    }
-);
+});
